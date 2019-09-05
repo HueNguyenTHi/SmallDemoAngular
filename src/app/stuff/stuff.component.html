@@ -1,0 +1,77 @@
+<!--The content below is only a placeholder and can be replaced.-->
+
+
+<h1>For custom directive</h1>
+<div>
+  <input type="radio" name="colors" (click)="color= 'green'"> Green
+  <input type="radio" name="colors" (click)="color= 'yellow'"> Yellow
+  <input type="radio" name="colors" (click)="color= 'red'"> Red
+</div>
+<div>
+  <p [appAttribute]="color">here</p>
+</div>
+<h1>For Custom pipe</h1>
+<div>
+  <input type="text" [(ngModel)]='textForTestPipe'>
+  <p>{{ textForTestPipe | newPipe: 'inputValue' }}</p>
+</div>
+<div>
+  <p>Click below button to generate random user list</p>
+  <button (click)='genRandomUserList()'>Click</button>
+  <table *ngIf='userList.length != 0'>
+    <tr>
+      <td>ID</td>
+      <td>Name</td>
+      <td>Address</td>
+    </tr>
+    <tr *ngFor='let user of userList'>
+      <td>{{user.id}}</td>
+      <td>{{user.name}}</td>
+      <td>{{user.address}}</td>
+    </tr>
+  </table>
+  <p>Search box</p>
+  <input type="text" [(ngModel)]='searchText'>
+  <table>
+    <tr>
+      <td>ID</td>
+      <td>Name</td>
+      <td>Address</td>
+    </tr>
+    <tr *ngFor='let user of userList | filter: searchText'>
+      <td>{{user.id}}</td>
+      <td>{{user.name}}</td>
+      <td>{{user.address}}</td>
+    </tr>
+  </table>
+</div>
+
+<h1>For CSS test</h1>
+<div class="containerTest">
+  <div class="item item--1">:1 Orange</div>
+  <div class="item item--2">:2 Green</div>
+  <div class="item item--3">:3 Violet</div>
+  <div class="item item--4">:4 Pink</div>
+  <div class="item item--5">:5 Blue</div>
+  <div class="item item--6">:6 Brown</div>
+</div>
+<div>Login Form</div>
+<div class="loginForm">
+  <div class="loginItem loginItem--1">User Name:</div>
+  <div class="loginItem loginItem--2">
+    <input type="text">
+  </div>
+  <div class="loginItem loginItem--3">Password:</div>
+  <div class="loginItem loginItem--4">
+    <input type="password">
+  </div>
+</div>
+<h1>For lazy loading</h1>
+<a routerLink="/stuff/test">test routing</a>
+<router-outlet></router-outlet>
+<h1>For binding properties</h1>
+<div>
+  <div>Avaiable amount: {{amount}}</div>
+  <app-child [amountFromParent]='amount' (amountAfterChange)='this.amount = $event'></app-child>
+</div>
+<app-test-forlazy-load></app-test-forlazy-load>

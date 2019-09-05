@@ -1,0 +1,57 @@
+<h1>Input user information to create user list</h1>
+<div class="user-infor">
+    <div class="item item1"></div>
+    <div class="item item2">
+        <p>Name: </p>
+        <input type="text" [(ngModel)]="inputName">
+        <p>Color: </p>
+        <p-dropdown [options]="colors" [(ngModel)]="selectedColor" [virtualScroll]="true" itemSize="3"></p-dropdown>
+        <button (click)="addNewUser()">AddToOb</button>
+        <button (click)="addToServer()">AddToSer</button>
+    </div>
+    <div class="item item3"></div>
+</div>
+
+<h1>After use observable and subcribe</h1>
+<div *ngIf="displayList.length != 0">
+    <p-table [value]="displayList">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Color</th>
+                <th>Combine</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-user>
+            <tr>
+                <td>{{user.id}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.color}}</td>
+                <td>{{user.combine}}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+<h1>After use HttpClient</h1>
+<!-- <button (click)="getFromServer()">Get</button> -->
+<div *ngIf="displayListFromServer.length != 0">
+    <p-table [value]="displayListFromServer">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Color</th>
+                <th>Delete</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-user>
+            <tr>
+                <td>{{user.id}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.color}}</td>
+                <td> <button (click)="delete(user.id)" icon="fa fa-minus"></button></td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

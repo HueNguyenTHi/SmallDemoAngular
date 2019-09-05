@@ -1,0 +1,27 @@
+<div class="container">
+    <button (click)="onAnimate()">Animatione</button>
+    <button (click)="onShrunker()">Shrunker</button>
+    <div [@firstAnima] = "state" class="rotate">
+        <div style="width: 100px">
+                <div style="width: 100px; height: 100px"></div>
+        </div>
+    </div>
+    <br>
+    <div [@wildAnima] = "wildState" class="rotate">
+            <div style="width: 100px">
+                    <div style="width: 100px; height: 100px"></div>
+            </div>
+        </div>
+ </div>
+ <div class="row container">
+    <div class="col-xs-12">
+        <input type="text" #input>
+        <button class="btn btn-primary" (click)="onAdd(input.value)">Add Item</button>
+        <hr>
+        <ul>
+            <li class="list-group-item" (click)="onDelete(item)" [@list1]="" *ngFor="let item of list">{{item}}
+
+            </li>
+        </ul>
+    </div>
+ </div>

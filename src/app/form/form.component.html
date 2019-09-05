@@ -1,0 +1,71 @@
+<h1>Model Driven form</h1>
+<form novalidate (submit)="onSubmit()" class="row justify-content-md-center container" #form="ngForm">
+    <div class="col-md-6">
+        <div class="form-group row">
+            <label for="example-text-input" class="col-md-2 col-form-label">Name:</label>
+            <div class="col-md-10">
+                <input required class="form-control" type="text" id="example-text-input"
+                    [(ngModel)]="modelDrivenForm.name" name="name">
+                <div class="col alert alert-danger" role="alert"
+                    *ngIf="form.controls.name?.errors?.required && form.controls.name?.touched">
+                    Name is required!
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="example-email-input" class="col-md-2 col-form-label">Email:</label>
+            <div class="col-md-10">
+                <input required class="form-control" type="email" id="example-email-input"
+                    [(ngModel)]="modelDrivenForm.email" name="email">
+                <div class="col alert alert-danger" role="alert"
+                    *ngIf="form.controls.email?.errors?.required && form.controls.email?.touched">
+                    Email is required!
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-10 offset-md-2">
+                <button [disabled]="form.invalid" class="btn btn-primary" type="submit">Submit</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<h1>React form</h1>
+<form novalidate (ngSubmit)="onSubmit()" class="row justify-content-md-center container" [formGroup]="rfForm">
+    <div class="col-md-6">
+        <div class="form-group row">
+            <label for="example-url-fb" class="col-md-2 col-form-label">Email:</label>
+            <div class="col-md-10">
+                <input formControlName="email" class="form-control" type="url" id="example-url-fb">
+                <div class="col alert alert-danger" role="alert"
+                    *ngIf="rfForm.controls.email?.errors?.minlength && rfForm.controls.email?.dirty">
+                    Min length is 3!
+                </div>
+            </div>
+        </div>
+        <fieldset formGroupName="social">
+            <div class="form-group row">
+                <label for="example-url-fb" class="col-md-2 col-form-label">Facebook:</label>
+                <div class="col-md-10">
+                    <input formControlName="facebook" class="form-control" type="url" id="example-url-fb">
+                    <div class="col alert alert-danger" role="alert"
+                        *ngIf="rfForm.controls.social.controls.facebook?.errors?.minlength && rfForm.controls.social.controls.facebook?.dirty">
+                        Min length is 12!
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="example-url-twt" class="col-md-2 col-form-label">Twitter:</label>
+                <div class="col-md-10">
+                    <input formControlName="twitter" class="form-control" type="url" id="example-url-fb">
+                </div>
+            </div>
+        </fieldset>
+        <div class="form-group row">
+            <div class="col-md-10 offset-md-2">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+        </div>
+    </div>
+</form>
